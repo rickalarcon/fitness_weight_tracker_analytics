@@ -1,0 +1,63 @@
+<% /*
+- This step is to create a navigation template to render for every page.
+
+- As you can see, there are some conditional statements in the template based 
+  on whether or not the current user is authenticated. If the user is not authenticated,
+  a Login button is displayed. If a user is currently logged in, a welcome message and 
+  a Logout button are displayed.
+
+-Next, you will add an EJS template for the home page. In the templates folder, 
+ create a new file named index.ejs and paste in the following markup.
+
+ */ %>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item navbar-logo" href="/">
+      Weight Tracker
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="/">
+        Home
+      </a>
+
+      <a class="navbar-item" href="/list">
+        Progress
+      </a>
+      <a class="navbar-item" href="/add">
+        Add Measurement
+      </a>
+
+    </div>
+  </div>
+
+  <div class="navbar-end">
+    <% if ( auth.isAuthenticated ) { %>
+      <div class="navbar-item">Welcome, <%= auth.firstName %>!</div>
+    <% } %>
+    <div class="navbar-item">
+      <div class="buttons">
+        <% if (!auth.isAuthenticated) { %>
+        <a href="/login" class="button is-primary">
+          <strong>Log in</strong>
+        </a>
+        <% } else { %>
+        <a href="/logout" class="button is-light">
+          <strong>Log Out</strong>
+        </a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  </div>
+</nav>

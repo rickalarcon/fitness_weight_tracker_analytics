@@ -3,6 +3,7 @@
 const dotenv = require("dotenv");
 const Hapi = require("@hapi/hapi");
 
+const plugins = require( "./plugins" ); //importing the new plugins module to call the plugins.register() function.
 const routes = require("./routes");
 
 const createServer = async () => {
@@ -10,6 +11,8 @@ const createServer = async () => {
 		port: process.env.PORT || 8080, 
 		host: process.env.HOST || "localhost"
 	});
+
+	await plugins.register( server );
 	server.route(routes);  //to register the routes defined in the routes module!
 	return server;         //output the address of the web Server
 };
