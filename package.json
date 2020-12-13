@@ -4,6 +4,8 @@
   "description": "fitness weight tracker ",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --watch src -e ejs,js src/index.js",
+    "initdb": "node tools/initdb.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +22,13 @@
     "nodemon": "^2.0.6"
   },
   "dependencies": {
-    "@hapi/hapi": "^20.0.3",
+    "@hapi/bell": "^12.1.1",
+    "@hapi/boom": "^9.1.0",
+    "@hapi/cookie": "^11.0.2",
+    "@hapi/hapi": "^19.2.0",
+    "@hapi/inert": "^6.0.3",
+    "@hapi/joi": "^17.1.1",
+    "@hapi/vision": "^6.0.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "postgres": "^1.0.2"
