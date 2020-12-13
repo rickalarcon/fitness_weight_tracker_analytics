@@ -17,8 +17,10 @@ The previous code updates the home page route with an auth mode try.
 "use strict";
 
 const path = require( "path" ); //build-in node js module
-
 const auth = require( "./auth" );
+
+const api = require("./api");
+const measurements = require( "./measurements");
 
 const home = {
   method: "GET",
@@ -59,4 +61,4 @@ module.exports = [
   home,
   staticAssets,
   error404
-].concat( auth );
+].concat( api,auth, measurements ); //passing these back

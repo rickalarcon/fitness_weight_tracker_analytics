@@ -1,25 +1,20 @@
 "use strict" 
 
 const dotenv = require("dotenv");
-const Hapi = require("@hapi/hapi");
+// const Hapi = require("@hapi/hapi");
 
-const plugins = require( "./plugins" ); //importing the new plugins module to call the plugins.register() function.
-const routes = require("./routes");
+// const plugins = require( "./plugins" ); //importing the new plugins module to call the plugins.register() function.
+// const routes = require("./routes");
 
-const createServer = async () => {
-	const server = Hapi.server({ //creates an instance of the hapi server
-		port: process.env.PORT || 8080, 
-		host: process.env.HOST || "localhost"
-	});
-
-	await plugins.register( server );
-	server.route(routes);  //to register the routes defined in the routes module!
-	return server;         //output the address of the web Server
-};
+const createServer = require( "./server" ).createServer;
 
 const init = async () =>{
 	dotenv.config();
-	const server = await createServer();
+	const config = {
+		port: process.env.PORT || 5000,
+		host: process.env.HOST || "localhost"
+	};
+	const server = await createServer( config);
 	await server.start();
 	console.log(`Server running on ${server.info.uri}`)
 };

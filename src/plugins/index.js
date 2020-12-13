@@ -12,10 +12,10 @@ const Vision = require( "@hapi/vision" ); // A hapi plugin for rendering server-
 const ejs = require( "ejs" );  //js templates 
 
 const auth = require( "./auth" ); //authentification we just created..
-
+const sql = require("./sql"); //adding our postgresql plugin
 module.exports = {
   register: async server => {
-    await server.register( [ Inert, Vision, auth ] ); //we gonna register those plugins
+    await server.register( [ Inert, Vision, auth, sql ] ); //we gonna register those plugins
 
     // configure view templates
     server.views( {
